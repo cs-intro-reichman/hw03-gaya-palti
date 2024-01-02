@@ -60,7 +60,16 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		// Replace the following statement with your code
-    	return 0;
+		double loanEnd = loan;
+		double rateEnd = rate;
+		double paymentEnd = payment;
+		int nEnd = n;
+		double endBalance = loan;
+		System.out.println((int) endBalance);
+		for (int i =0; i <  n; i++) {
+			endBalance = (endBalance - payment) * (1 + rate / 100);
+			System.out.println((int) endBalance);
+		} 
+		return endBalance;
 	}
 }
