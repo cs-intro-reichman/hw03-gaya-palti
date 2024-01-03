@@ -3,7 +3,7 @@
 */
 public class LoanCalc {
 	
-	static double epsilon = 0.001;  // The computation tolerance (estimation error)
+	static double epsilon = 0.001;  // The computation tolerance (estimation error) 
 	static int iterationCounter;    // Monitors the efficiency of the calculation
 	
     /** 
@@ -38,9 +38,15 @@ public class LoanCalc {
 	* the number of periods (n), and epsilon, a tolerance level.
 	*/
 	// Side effect: modifies the class variable iterationCounter.
-    public static double bruteForceSolver(double loan, double rate, int n, double epsilon) {  
-    	// Replace the following statement with your code
-    	return 0;
+    public static double bruteForceSolver(double loan, double rate, int period, double epsilon) {  
+    	double payment = loan/period;
+		iterationCounter = 0;
+		while (endBalance(loan, rate, period, payment) > epsilon){
+			payment = payment + epsilon;
+  			iterationCounter++ ;
+			//System.out.println(payment);
+		}
+    	return payment;
     }
     
     /**
@@ -60,16 +66,9 @@ public class LoanCalc {
 	* interest rate (as a percentage), the number of periods (n), and the periodical payment.
 	*/
 	private static double endBalance(double loan, double rate, int n, double payment) {
-		double loanEnd = loan;
-		double rateEnd = rate;
-		double paymentEnd = payment;
-		int nEnd = n;
-		double endBalance = loan;
-		System.out.println((int) endBalance);
 		for (int i =0; i <  n; i++) {
-			endBalance = (endBalance - payment) * (1 + rate / 100);
-			System.out.println((int) endBalance);
+			loan = (loan - payment) * (1 + rate / 100);
 		} 
-		return endBalance;
+		return loan;
 	}
 }
