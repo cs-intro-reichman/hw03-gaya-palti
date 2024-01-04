@@ -22,5 +22,3 @@ public class UniqueChars {
         return ans;
     }   
 }
-
-//check with indexof on the new string slide 32
