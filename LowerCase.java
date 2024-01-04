@@ -17,10 +17,7 @@ public class LowerCase {
             char ch = str.charAt(i);
             if (ch <= 90 && ch >= 65){
                 ans = ans + (char) (str.charAt(i) + 32);
-            } else if (ch == ' '){
-                ans = ans + " ";
-            }
-            else {
+            } else {
                 ans = ans + (char) ch;
             }
             i++;
