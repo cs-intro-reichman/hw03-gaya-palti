@@ -25,6 +25,7 @@ public class Calendar {
 	    //// Write the necessary initialization code, and replace the condition
 	    //// of the while loop with the necessary condition 
 	 	while (year == newYear) {
+			// checks if the day is sunday
 			if (dayOfWeek == 1) {
 				System.out.println(dayOfMonth + "/" + month + "/" + year + " Sunday"); 
 			} else {
@@ -44,11 +45,13 @@ public class Calendar {
 	 // If the month changes, sets the number of days in this month.
 	 // Side effects: changes the static variables dayOfMonth, month, year, dayOfWeek, nDaysInMonth.
 	 private static void advance() {
+		// Updates the day of the week
 		if (dayOfWeek == 7){
 			dayOfWeek = 1;
 		} else {
 			dayOfWeek ++ ;
 		}
+		// Updates the day of the month and then accordinly updates the month and the year if needed
 		if (dayOfMonth == nDaysInMonth){
 			dayOfMonth = 1;
 			if (month == 12){
