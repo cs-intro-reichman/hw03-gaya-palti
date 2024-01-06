@@ -16,7 +16,7 @@ public class LoanCalc {
 		double loan = Double.parseDouble(args[0]);
 		double rate = Double.parseDouble(args[1]);
 		int period = Integer.parseInt(args[2]);
-		System.out.println("Loan sum = " + loan + ", interest rate = " + rate + "%, periods = " + n);
+		System.out.println("Loan sum = " + loan + ", interest rate = " + rate + "%, periods = " + period);
 		
 		// Computes the periodical payment using brute force search
 		System.out.print("Periodical payment, using brute force: ");
@@ -60,17 +60,24 @@ public class LoanCalc {
 		// implying that the function evaluates to zero somewhere between L and H .
 		// So, let’s assume that L and H were set to such initial values.
 		// Set g to (𝐿 + 𝐻)/2
-		double payment = 0;
-		while ((endBalance(loan, rate, period, payment) - payment) > epsilon) {
+		iterationCounter = 0;
+		double lowPayment = loan/period;
+		double highPayment = loan;
+		double g = lowPayment + (highPayment - lowPayment) / 2;
+		while ((highPayment - lowPayment) > epsilon) {
 			// Sets L and H for the next iteration
-			if ((endBalance(loan, rate, period, payment) * payment) > 0){
+			if ((endBalance(loan, rate, period, g) * (endBalance(loan, rate, period, lowPayment)) > 0)){
 				// the solution must be between g and H
 				// so set L or H accordingly
+				lowPayment = g;
 			} else {
 				// the solution must be between L and g
 				// so set L or H accordingly
 				// Computes the mid-value (𝑔) for the next iteration
+				highPayment = g;
 			}
+			g = lowPayment + (highPayment - lowPayment) / 2;
+			iterationCounter ++;
 		}
 			return g;
     }
